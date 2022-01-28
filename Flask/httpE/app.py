@@ -1,23 +1,7 @@
-import json
-import os
-import re
-import ssl
-from datetime import datetime
-from sqlite3 import apilevel
-from urllib.request import urlopen
-
-import requests
-from flask import (Flask, Response, jsonify, make_response, render_template,
-                   request)
-from flask_restplus import Api, Resource, fields
+from app import routes
+from flask import Flask
 
 app = Flask(__name__)
-api = apilevel(app)
-
-t = api.model('t', {'pui': fields.String('pui'),
-                    'psi': fields.String('psi'),
-                    'psi_': fields.String('psi_')})
-tks = []
 
 @app.route("/", methods=['GET'])
 def index(username):
