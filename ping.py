@@ -1,10 +1,10 @@
 import os
 
-hostname = "1.1.1.1"  # example
-response = os.system("ping -c 1 " + hostname)
+hostname = input("IP : ")
 
-# and then check the response...
+response = os.system("ping -n 1 " + hostname)
+
 if response == 0:
-    print (hostname, 'is up!')
+    print(hostname, 'is up!')
 else:
-    print (hostname, 'is down!')
+    print(hostname, 'is down!')
