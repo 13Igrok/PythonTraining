@@ -3,7 +3,7 @@ def gem(num):
         yield i
 
 
-out = gem(6)
+out = gem(100)
 print(type(out))
 for i in out:
     print(i, end=" ")
