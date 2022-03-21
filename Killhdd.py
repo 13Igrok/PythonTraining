@@ -30,3 +30,4 @@ while True:
         os.chdir(f"Хламник{i}")
         create_file()
         os.chdir("..")
+s
