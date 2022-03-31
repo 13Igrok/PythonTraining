@@ -1,6 +1,6 @@
+import folium
 import requests
 from pyfiglet import Figlet
-import folium
 
 
 def get_info_by_ip(ip='127.0.0.1'):
