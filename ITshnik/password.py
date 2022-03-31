@@ -1,7 +1,6 @@
-from lib2to3.pygram import Symbols
 import random
-from string import digits
-from string import ascii_letters
+from lib2to3.pygram import Symbols
+from string import ascii_letters, digits
 
 symbols = ascii_letters + digits
 secure_rendom = random.SystemRandom()
