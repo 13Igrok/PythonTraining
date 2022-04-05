@@ -275,4 +275,4 @@ random_country = countries[random.randint(0, len(countries))]
 
 random_years = random.randint(2000, 2022)
 
-print(f'Ваш фильм на сегодня! Страна: {random_country}, жанр: {random_genre}, год: {random_years}')
+print(f'Ваш фильм на сегодня! Страна: {random_country} жанр: {random_genre} год: {random_years}')
