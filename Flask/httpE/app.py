@@ -30,7 +30,10 @@ def blog():
 def index():
     return render_template('login.html')
 
+
 а
+
+
 @app.route('/FlaskTutorial',  methods=['POST'])
 def success():
     if request.method == 'POST':
