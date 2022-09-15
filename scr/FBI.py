@@ -12,7 +12,7 @@ print("Starting Hack....")
 time.sleep(5)
 while prosent_i <= 100:
 
-    print("Hacking FBI", prosent_i, '%')
+    print("Hacking FBI:", prosent_i, '%')
     time.sleep(1)
     prosent_i += 10
 
