@@ -2,7 +2,7 @@ import os
 
 hostname = input("IP : ")
 
-response = os.system("ping -c 1 " + hostname)
+response = os.system("ping -c 10 " + hostname)
 
 if response == 0:
     print(hostname, 'is up!')
