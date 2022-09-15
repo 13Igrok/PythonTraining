@@ -1,4 +1,3 @@
-import os
 import time
 import sys
 
@@ -12,7 +11,7 @@ prosent_i = 10
 print("Starting Hack....")
 time.sleep(5)
 while prosent_i <= 100:
-    os.system('Hacking FBI')
+
     print("Hacking FBI", prosent_i, '%')
     time.sleep(1)
     prosent_i += 10
