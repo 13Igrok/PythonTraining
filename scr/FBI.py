@@ -1,12 +1,22 @@
+import os
 import time
+import sys
 
-a1_timeout=("Timeout")
-a = 10
-b = a + a
-prosent_int= b 
+
+a1_timeout = 'timeouts'
+up_time = 10
+sec_t = 0
+min_t = 0
+prosent_i = 10
+
 print("Starting Hack....")
 time.sleep(5)
-print("Hacking FBI" + prosent_int + "%")
+while prosent_i <= 100:
+    os.system('Hacking FBI')
+    print("Hacking FBI", prosent_i, '%')
+    time.sleep(1)
+    prosent_i += 10
+
 time.sleep(5)
 print(a1_timeout)
 time.sleep(1)
