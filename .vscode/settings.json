@@ -10,5 +10,6 @@
         "./Flask",
         "-p",
         "*_test.py"
-    ]
+    ],
+    "netbeans.javaSupport.enabled": true
 }
