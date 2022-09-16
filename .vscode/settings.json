@@ -1,6 +1,6 @@
 {
     "python.testing.pytestArgs": [
-        "IP"
+        "try.py"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true
