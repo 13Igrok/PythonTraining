@@ -1,13 +1,5 @@
-import json
-import os
-import re
-import ssl
-from dataclasses import fields
-from datetime import datetime
-from sqlite3 import apilevel
-from urllib.request import urlopen
 
-from flask import (Flask, Response, jsonify, make_response, render_template,
+from flask import (Flask, render_template,
                    request)
 
 app = Flask(__name__)
@@ -51,5 +43,3 @@ def not_found_error(error):
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('500.html'), 500
-    """_summary_
-    """
