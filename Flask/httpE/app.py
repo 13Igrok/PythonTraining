@@ -1,4 +1,3 @@
-
 from flask import (Flask, render_template,
                    request)
 
@@ -23,9 +22,7 @@ def index():
     return render_template('login.html')
 
 
-
-
-@app.route('/FlaskTutorial',  methods=['POST'])
+@app.route('/FlaskTutorial', methods=['POST'])
 def success():
     if request.method == 'POST':
         email = request.form['email']

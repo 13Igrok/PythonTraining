@@ -1,8 +1,9 @@
 import enum
+from typing import List, Any
 
 
 def get_nums(i):
-    enum = []
+    enum: list[Any] = []
     for n in l:
         if n % 2 == 0:
             enum.append(n)
