@@ -1,6 +1,6 @@
 {
     "python.testing.pytestArgs": [
-        "try.py"
+        "Flask"
     ],
     "python.testing.unittestEnabled": true,
     "python.testing.pytestEnabled": false,
@@ -9,7 +9,7 @@
         "-s",
         "./Flask",
         "-p",
-        "*_test.py"
+        "*test.py"
     ],
     "netbeans.javaSupport.enabled": true
 }
