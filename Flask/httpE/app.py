@@ -1,14 +1,40 @@
-from flask import Flask, render_template, request
+import sys
+
+from flask import Flask, render_template
+from flask_flatpages import FlatPages, pygments_style_defs
+from flask_frozen import Freezer
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = '.md'
+FLATPAGES_ROOT = 'content'
+POST_DIR = 'posts'
 
 app = Flask(__name__)
+flatpages = FlatPages(app)
+freezer = Freezer(app)
+app.config.from_object(__name__)
+
+
+@app.route("/")
+def index():
+    posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
+    posts.sort(key=lambda item: item['date'], reverse=True)
+    return render_template('index.html', posts=posts, bigheader=True)
+
+
+@app.route('/posts/<name>/')
+def post(name):
+    path = f'{POST_DIR}/{name}'
+    post = flatpages.get_or_404(path)
+    return render_template('post.html', post=post)
+
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8080)
-
-
-@app.route('/')
-def blog():
-    return render_template('index.html')
+    if len(sys.argv) > 1 and sys.argv[1] == "build":
+        freezer.freeze()
+    else:
+        app.run(host='127.0.0.1', port=8000, debug=True)
 
 
 @app.route('/blog')
@@ -19,18 +45,6 @@ def blog():
 @app.route('/login')
 def index():
     return render_template('login.html')
-
-
-@app.route('/FlaskTutorial', methods=['POST'])
-def success():
-    if request.method == 'POST':
-        email = request.form['email']
-        return render_template('success.html', email=email)
-
-
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('404.html'), 404
 
 
 @app.errorhandler(500)
