@@ -1,52 +1,44 @@
-import sys
+from flask import Flask, jsonify, send_from_directory
 
-from flask import Flask, render_template
-from flask_flatpages import FlatPages, pygments_style_defs
-from flask_frozen import Freezer
-
-DEBUG = True
-FLATPAGES_AUTO_RELOAD = DEBUG
-FLATPAGES_EXTENSION = '.md'
-FLATPAGES_ROOT = 'content'
-POST_DIR = 'posts'
-
-app = Flask(__name__)
-flatpages = FlatPages(app)
-freezer = Freezer(app)
-app.config.from_object(__name__)
+app = Flask(__name__, static_folder='static/dist')
 
 
-@app.route("/")
+@app.route('/')
 def index():
-    posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
-    posts.sort(key=lambda item: item['date'], reverse=True)
-    return render_template('index.html', posts=posts, bigheader=True)
+    # тут просто пробрасываем файлик, без всякого препроцессинга
+    return app.send_static_file("index.html")
+
+@app.route('/dist/<path:path>')
+def static_dist(path):
+    # тут пробрасываем статику
+    return send_from_directory("static/dist", path)
 
 
-@app.route('/posts/<name>/')
-def post(name):
-    path = f'{POST_DIR}/{name}'
-    post = flatpages.get_or_404(path)
-    return render_template('post.html', post=post)
+@app.route('/api/languages')
+def languages():
+    # а это простой метод, который будет возвращать список языков программирования
+    # который мы потом с помощью vue.js будем отображать
+    return jsonify({
+        'languages': [
+            'assembly',
+            'c#',
+            'c',
+            'c++',
+            'go',
+            'java',
+            'javascript',
+            'object c',
+            'pascal',
+            'perl',
+            'php',
+            'python',
+            'R',
+            'ruby',
+            'SQL',
+            'swift',
+            'visual basic',
+        ]
+    })
 
-
-if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "build":
-        freezer.freeze()
-    else:
-        app.run(host='127.0.0.1', port=8000, debug=True)
-
-
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
-
-
-@app.route('/login')
-def index():
-    return render_template('login.html')
-
-
-@app.errorhandler(500)
-def internal_error(error):
-    return render_template('500.html'), 500
+if __name__ == '__main__':
+    app.run()
