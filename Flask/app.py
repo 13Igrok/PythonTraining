@@ -1,11 +1,11 @@
-from pickle import APPEND
 from flask import Flask, render_template
+app = Flask(__name__)
 
 
-def main():
+@app.route('/')
+def index():
     return render_template('index.html')
 
 
-@APPEND.route('/about')
-def showSignUp():
-    return render_template('about.html')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
