@@ -11,5 +11,6 @@
         "-p",
         "*test.py"
     ],
-    "netbeans.javaSupport.enabled": true
+    "netbeans.javaSupport.enabled": true,
+    "sqltools.useNodeRuntime": true
 }
