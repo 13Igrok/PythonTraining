@@ -1,7 +1,8 @@
-import keras
+import sqlite3
 
-# define the model
-model = keras.models.Sequential()
-model.add(keras.layers.Dense(64, activation='relu'))
-model.add(keras.layers.Dense(32, activation='relu'))
-model.add(keras.layers.Dense(1, 
+conn = sqlite3.connect('mydatabase.db')
+c = conn.cursor()
+
+
+conn.commit()
+conn.close()

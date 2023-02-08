@@ -1,17 +1,21 @@
-from flask import Flask, render_template, request
+import json
+import sqlite3
+
 import pandas as pd
-from flask_executor import Executor
 import plotly
 import plotly.graph_objs as go
+from flask import Flask, render_template, request
+from flask_executor import Executor
 from flask_socketio import SocketIO, emit
-import json
 
+conn = sqlite3.connect('mydatabase.db')
+cursor = conn.cursor()
 global test_val
 app = Flask(__name__)
 socketio = SocketIO(app)
 def create_plot(feature_importance):
     feature_importance=feature_importance.reset_index(drop=True)
-    feature_importance=feature_importance.iloc[0:5]
+    feature_importance = feature_importance.iloc[:5]
     print(feature_importance)
 
     data = [
@@ -21,9 +25,7 @@ def create_plot(feature_importance):
         )
     ]
 
-    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return graphJSON
+    return json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
 @socketio.on("response")
 def background_task_func():
