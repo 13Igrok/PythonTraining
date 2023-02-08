@@ -15,23 +15,20 @@ class Finder:
 
         if "Device or resource busy" in result:
             return None
-        else:
-            ssid_list = [item.lstrip('SSID:').strip('"\n') for item in result]
-            print("Successfully get ssids {}".format(str(ssid_list)))
+        ssid_list = [item.lstrip('SSID:').strip('"\n') for item in result]
+        print(f"Successfully get ssids {ssid_list}")
 
         for name in ssid_list:
             try:
                 result = self.connection(name)
             except Exception as exp:
-                print("Couldn't connect to name : {}. {}".format(name, exp))
+                print(f"Couldn't connect to name : {name}. {exp}")
             else:
                 if result:
-                    print("Successfully connected to {}".format(name))
+                    print(f"Successfully connected to {name}")
 
-    def connection(self, name):
-        cmd = "nmcli d wifi connect {} password {} iface {}".format(name,
-                                                                    self.password,
-                                                                    self.interface_name)
+    def connection(self, name):  # sourcery skip: raise-specific-error
+        cmd = f"nmcli d wifi connect {name} password {self.password} iface {self.interface_name}"
         try:
             if os.system(cmd) != 0:  # This will run the command and check connection
                 raise Exception()

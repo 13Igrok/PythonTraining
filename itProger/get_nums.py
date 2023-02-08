@@ -1,10 +1,11 @@
 import enum
+import linecache
 from typing import List, Any
 
 
 def get_nums(i):
     enum: list[Any] = []
-    for n in l:
+    for n in linecache:
         if n % 2 == 0:
             enum.append(n)
         if n > 90:
