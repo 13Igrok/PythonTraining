@@ -1,5 +1,6 @@
-import scapy
 import time
+
+import scapy
 
 target_ip = "10.1.10.1"
 packet_count = 1000
