@@ -13,5 +13,12 @@
     ],
     "netbeans.javaSupport.enabled": true,
     "sqltools.useNodeRuntime": true,
-    "sqltools.connections": []
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:PythonTraining}/mydb.db",
+            "name": "mydbmydb"
+        }
+    ]
 }
