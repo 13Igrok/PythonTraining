@@ -9,7 +9,7 @@ from flask import Flask, render_template, request
 from flask_executor import Executor
 from flask_socketio import SocketIO, emit
 
-conn = sqlite3.connect('mydatabase.db')
+conn = sqlite3.connect('mydb.db')
 cursor = conn.cursor()
 from flask import render_template
 
