@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "PythonTraining-1",
+			"path": "../PythonTraining-1"
+		}
+	],
+	"settings": {
+		"sqltools.useNodeRuntime": true,
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"driver": "SQLite",
+				"database": "${workspaceFolder:PythonTraining}/mydb.db",
+				"name": "mydb"
+			}
+		]
+	}
+}

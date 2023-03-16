@@ -1,0 +1,6 @@
+vpn01.sovcombank.group
+vpn02.sovcombank.group
+msk-vpn01.sovcombank.group
+msk-vpn02.sovcombank.group
+spb-vpn01.sovcombank.group
+srt-vpn01.sovcombank.group
