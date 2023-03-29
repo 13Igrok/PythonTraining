@@ -1,6 +1,6 @@
 import os
 
-with open ("ip_list.txt") as file:
+with open ("../../ip_list.txt") as file:
     park = file.read().splitlines()
     output = ""
     for ip in park:
