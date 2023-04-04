@@ -1,5 +1,7 @@
 import sqlite3
 
+import cur as cur
+
 conn = sqlite3.connect(r'D:/Project/orders.db')
 
 

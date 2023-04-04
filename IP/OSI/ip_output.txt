@@ -1,0 +1,6 @@
+vpn01.sovcombank.group is up 
+vpn02.sovcombank.group is up 
+msk-vpn01.sovcombank.group is up 
+msk-vpn02.sovcombank.group is up 
+spb-vpn01.sovcombank.group is up 
+srt-vpn01.sovcombank.group is up 

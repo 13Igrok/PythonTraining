@@ -1,10 +1,16 @@
 import os
+from shlex import quote as shlex_quote
 
-def update_ubuntu():
-    os.system("sudo apt-get update")
-    os.system("sudo apt-get upgrade -f -y")
-    os.system("sudo apt-get install -f -y")
-    os.system("sudo apt-get autoremove -f -y")
-    os.system("sudo apt-get autoclean")
+sapt = ("sudo apt-get ")
+fy= (" -f -y")
+up=("update")
+upg=("upgrade")
+fin=("&&")
+int=("install")
+au=("auto")
+re=("remove")
+ce=("clear")
+def update_ubuntu() -> object:
+    os.system ( shlex_quote ( sapt ) + up + fin sapt + upg + fy + fin + sapt + int + fy + fin + sapt + au + re + fy + fin + sapt + au + ce + fy)
     
 update_ubuntu()
