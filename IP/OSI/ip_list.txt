@@ -1,6 +1,3 @@
-vpn01.sovcombank.group
-vpn02.sovcombank.group
-msk-vpn01.sovcombank.group
-msk-vpn02.sovcombank.group
-spb-vpn01.sovcombank.group
-srt-vpn01.sovcombank.group
+1.1.1.1
+8.8.8.8
+77.88.8.8
