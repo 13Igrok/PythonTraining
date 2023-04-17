@@ -1,2 +1,2 @@
-print(all([]))
-print(all([[]]))
+print ( all ( [] ) )
+print ( all ( [[]] ) )

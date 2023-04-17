@@ -5,21 +5,20 @@ from sqlite3 import Error
 
 def sql_connection():
     try:
-        return sqlite3.connect('mydb.db')
+        return sqlite3.connect ( 'mydb.db' )
     except Error:
 
-        print(Error)
+        print ( Error )
 
 
 def sql_table(con):
+    cursorObj = con.cursor ()
 
-    cursorObj = con.cursor()
+    cursorObj.execute (
+        "CREATE TABLE employees(id integer PRIMARY KEY, name text, salary real, department text, position text, hireDate text)" )
 
-    cursorObj.execute(
-        "CREATE TABLE employees(id integer PRIMARY KEY, name text, salary real, department text, position text, hireDate text)")
-
-    con.commit()
+    con.commit ()
 
 
-con = sql_connection()
-sql_table(con)
+con = sql_connection ()
+sql_table ( con )

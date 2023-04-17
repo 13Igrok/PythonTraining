@@ -3,20 +3,20 @@ class A:
         self.attr = 1
 
 
-class B(A):
+class B ( A ):
     def __init__(self):
-        super().__init__()
+        super ().__init__ ()
 
 
-class C(A):
+class C ( A ):
     def __init__(self):
         self.attr = 2
 
 
-class D(B, C):
+class D ( B, C ):
     def __init__(self):
-        super().__init__()
+        super ().__init__ ()
 
 
-d = D()
-print(d.attr)
+d = D ()
+print ( d.attr )

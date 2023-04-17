@@ -1,6 +1,6 @@
 while True:
-    expression = input("Enter expression: ")
+    expression = input ( "Enter expression: " )
     if expression == 'quit':
         break
-    result = eval(expression)
-    print("Result =", result)
+    result = eval ( expression )
+    print ( "Result =", result )

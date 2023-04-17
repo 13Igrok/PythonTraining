@@ -1,4 +1,3 @@
-import nltk
 from nltk.chat.util import Chat, reflections
 
 pairs = [
@@ -8,5 +7,5 @@ pairs = [
     ["(.*?) (location|city) ?", ["I'm a chatbot, so I don't have a physical presence anywhere!"]],
 ]
 
-chatbot = Chat(pairs, reflections)
-chatbot.converse()
+chatbot = Chat ( pairs, reflections )
+chatbot.converse ()

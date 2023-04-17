@@ -1,9 +1,8 @@
 class Alpha:
-
     result = 64
 
     def start(self):
-        while not self.func():
+        while not self.func ():
             self.k -= 3
 
     def func(self):
@@ -13,6 +12,6 @@ class Alpha:
         return True
 
 
-A = Alpha()
-A.start()
-print(A.result)
+A = Alpha ()
+A.start ()
+print ( A.result )
