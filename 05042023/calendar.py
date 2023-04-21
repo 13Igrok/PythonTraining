@@ -1,4 +1,4 @@
 import calendar
 
-c = calendar.TextCalendar()
-print(c.formatmonth(2023,1))
+c = calendar.TextCalendar ()
+print ( c.formatmonth ( 2023, 1 ) )
