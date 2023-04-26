@@ -1,13 +1,15 @@
+import csv
 import os
+import sys
+import io
 
-with open ( "ip_list.txt" ) as file:
-    park = file.read ().splitlines ()
-    output = ""
-    for ip in park:
-        response = os.popen ( f"ping -c 4 -n {ip} " ).read ()
-        if ("Request timed out." in response or "unreachable" in response):
-            output += str ( ip ) + ' link is down' + '\n'
+with open('websites.txt', 'r', encoding="ASCII") as file:
+    reader = csv.reader(file)
+    sys.stdout = io.TextIOWrapper ( sys.stdout.buffer, encoding='ASCII' )
+    for row in reader:
+        website = row[0]
+        response = os.system("ping -c 4 " + website)
+        if response == 0:
+            print(website, 'is up!')
         else:
-            output += str ( ip ) + ' is up ' + '\n'
-    with open ( "ip_output.txt", "w" ) as file:
-        file.write ( output )
+            print(website, 'is down!')
