@@ -1,0 +1,2 @@
+print ( all ( [] ) )
+print ( all ( [[]] ) )
