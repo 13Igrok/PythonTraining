@@ -1,5 +1,8 @@
-import hashlib, binascii
-import timeago, datetime
+import binascii
+import hashlib
+
+import datetime
+import timeago
 
 salt=b'$#0x--.\'/\\98'
 def hash(string):

@@ -1,5 +1,5 @@
 from flaskext.mysql import MySQL
-from pymysql.cursors import DictCursor
+import pymysql.cursors
 
 
 class DB(object):
