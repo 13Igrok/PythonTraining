@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
-    <option name="sdkUUID" value="e71de0a5-306b-4bea-af4e-b0d7897fb38c" />
+    <option name="sdkName" value="C:\ProgramData\anaconda3" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="C:\ProgramData\anaconda3" project-jdk-type="Python SDK" />
   <component name="PyCharmProfessionalAdvertiser">

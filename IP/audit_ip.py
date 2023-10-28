@@ -1,11 +1,11 @@
 import subprocess
 
-hostname: str = input ( "IP: " )
-output = subprocess.Popen ( ["ping", hostname], stdout=subprocess.PIPE ).communicate ()[0]
+hostname: str = input("IP: ")
+output = subprocess.Popen(["ping", hostname], stdout=subprocess.PIPE).communicate()[0]
 
-print ( output )
+print(output)
 
-if "unreachable" in output:
-    print ( "Offline" )
-else:
+if 'unreachable' not in output:
     pass
+else:
+    print("Offline")
