@@ -1,0 +1,17 @@
+
+DOCTYPE html>
+>
+>
+<title>Простой чат</title>
+</head>
+>
+<h1>Простой чат</h1>
+
+<div id="chat">
+{% for message in messages %}
+<p><strong>{{ message.username }}:</strong> {{ message.message }}</p>
+{% endfor %}
+</div>
+
+<form action="/send_message" method="post">
+<input type="text" name="username" placeholder="Ваше
