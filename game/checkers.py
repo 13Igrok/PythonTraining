@@ -20,6 +20,8 @@ pygame.display.set_caption("Шашки")
 square_size = WIDTH // 8
 
 # Класс для шашки
+
+
 class Piece:
     def __init__(self, color, row, col):
         self.color = color
@@ -33,6 +35,8 @@ class Piece:
         pygame.draw.circle(win, self.color, (x, y), radius)
 
 # Отрисовка доски
+
+
 def draw_board():
     win.fill(GRAY)
     for row in range(8):
@@ -42,6 +46,8 @@ def draw_board():
             pygame.draw.rect(win, WHITE, (x, y, square_size, square_size))
 
 # Обновление экрана
+
+
 def update_screen():
     draw_board()
     for piece in pieces:
@@ -49,10 +55,14 @@ def update_screen():
     pygame.display.update()
 
 # Проверка нахождения клетки в пределах доски
+
+
 def is_valid_position(row, col):
     return 0 <= row < 8 and 0 <= col < 8
 
 # Инициализация игры
+
+
 def start_game():
     global pieces, selected_piece, turn
     pieces = []
@@ -67,6 +77,8 @@ def start_game():
             pieces.append(Piece(RED, row, col))
 
 # Проверка возможности выполнения хода
+
+
 def is_valid_move(piece, row, col):
     if not is_valid_position(row, col):
         return False
@@ -85,13 +97,15 @@ def is_valid_move(piece, row, col):
         if piece_.row == middle_row and piece_.col == middle_col:
             middle_piece = piece_
             break
-    
+
     if middle_piece and middle_piece.color != piece.color:
         return True
-    
+
     return False
 
 # Выполнение хода
+
+
 def move_piece(piece, row, col):
     piece.row = row
     piece.col = col
@@ -109,6 +123,8 @@ def move_piece(piece, row, col):
         pieces.remove(middle_piece)
 
 # Основной игровой цикл
+
+
 def game_loop():
     running = True
     clock = pygame.time.Clock()
@@ -153,6 +169,7 @@ def game_loop():
         update_screen()
 
     pygame.quit()
+
 
 # Запуск игры
 game_loop()
