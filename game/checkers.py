@@ -1,21 +1,5 @@
 import pygame
-import pyautogui
 
-# Получаем текущую позицию курсора
-x, y = pyautogui.position()
-
-# Печатаем текущие координаты курсора
-print(f"Текущие координаты курсора: x={x}, y={y}")
-
-# Перемещаем курсор в новую позицию
-new_x, new_y = 100, 100
-pyautogui.moveTo(new_x, new_y)
-
-# Получаем новую позицию курсора
-x, y = pyautogui.position()
-
-# Печатаем новые координаты курсора
-print(f"Новые координаты курсора: x={x}, y={y}")
 # Инициализация Pygame
 pygame.init()
 
@@ -31,6 +15,9 @@ RED = (255, 0, 0)
 # Создание окна
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Шашки")
+
+# Размер клетки
+square_size = WIDTH // 8
 
 # Класс для шашки
 class Piece:
@@ -61,16 +48,65 @@ def update_screen():
         piece.draw()
     pygame.display.update()
 
+# Проверка нахождения клетки в пределах доски
+def is_valid_position(row, col):
+    return 0 <= row < 8 and 0 <= col < 8
+
 # Инициализация игры
 def start_game():
-    global pieces
+    global pieces, selected_piece, turn
     pieces = []
+    selected_piece = None
+    turn = RED
+
     for row in range(3):
         for col in range(row % 2, 8, 2):
             pieces.append(Piece(BLACK, row, col))
     for row in range(5, 8):
         for col in range(row % 2, 8, 2):
             pieces.append(Piece(RED, row, col))
+
+# Проверка возможности выполнения хода
+def is_valid_move(piece, row, col):
+    if not is_valid_position(row, col):
+        return False
+
+    if abs(row - piece.row) != abs(col - piece.col):
+        return False
+
+    if abs(row - piece.row) == 1 and abs(col - piece.col) == 1:
+        return True
+
+    middle_row = (row + piece.row) // 2
+    middle_col = (col + piece.col) // 2
+
+    middle_piece = None
+    for piece_ in pieces:
+        if piece_.row == middle_row and piece_.col == middle_col:
+            middle_piece = piece_
+            break
+    
+    if middle_piece and middle_piece.color != piece.color:
+        return True
+    
+    return False
+
+# Выполнение хода
+def move_piece(piece, row, col):
+    piece.row = row
+    piece.col = col
+
+    middle_row = (row + piece.row) // 2
+    middle_col = (col + piece.col) // 2
+
+    middle_piece = None
+    for piece_ in pieces:
+        if piece_.row == middle_row and piece_.col == middle_col:
+            middle_piece = piece_
+            break
+
+    if middle_piece:
+        pieces.remove(middle_piece)
 
 # Основной игровой цикл
 def game_loop():
@@ -85,13 +121,38 @@ def game_loop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    x, y = event.pos
+                    col = x // square_size
+                    row = y // square_size
+
+                    for piece in pieces:
+                        if piece.row == row and piece.col == col and piece.color == turn:
+                            selected_piece = piece
+                            break
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1 and selected_piece:
+                    x, y = event.pos
+                    col = x // square_size
+                    row = y // square_size
+
+                    if is_valid_move(selected_piece, row, col):
+                        move_piece(selected_piece, row, col)
+                        selected_piece = None
+
+                    if selected_piece.row == 7 and selected_piece.color == BLACK:
+                        win_caption = "Шашки - Черные победили!"
+                        pygame.display.set_caption(win_caption)
+                        running = False
+                    elif selected_piece.row == 0 and selected_piece.color == RED:
+                        win_caption = "Шашки - Красные победили!"
+                        pygame.display.set_caption(win_caption)
+                        running = False
 
         update_screen()
 
     pygame.quit()
 
-# Размеры клетки на доске
-square_size = WIDTH // 8
-
-# Запуск игрового цикла
+# Запуск игры
 game_loop()
