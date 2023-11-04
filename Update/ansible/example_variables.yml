@@ -1,0 +1,27 @@
+---
+- name: Обновление Windows
+  hosts: windows_hosts
+  gather_facts: false
+  tasks:
+    - name: Установка обновлений
+      win_updates:
+        category_names:
+          - CriticalUpdates
+          - SecurityUpdates
+          - UpdateRollups
+          - Updates
+        state: installed
+        reboot: yes
+      register: update_result
+
+    - name: Перезагрузка
+      win_reboot:
+      when: update_result.reboot_required
+
+    - name: Проверка доступности после обновления
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 5985
+        delay: 10
+        timeout: 300
+      delegate_to: localhost
