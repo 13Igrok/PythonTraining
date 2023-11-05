@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 import os
-import sys
 import platform
+import sys
 from time import ctime
+
 from colorama import Fore
+
 
 def CriticalError(message, error):
     print(f"""

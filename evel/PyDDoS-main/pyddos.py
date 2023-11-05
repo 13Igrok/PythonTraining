@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+import argparse
 import os
 import sys
-import argparse
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -54,6 +54,6 @@ if __name__ == "__main__":
         sys.exit(1)
 
     with AttackMethod(
-        duration=time, name=method, threads=threads, target=target
+            duration=time, name=method, threads=threads, target=target
     ) as Flood:
         Flood.Start()

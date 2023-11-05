@@ -11,11 +11,11 @@ GRAMMAR = '''
 
 def generate_code(grammar, text):
     try:
-        ast = parse ( text, grammar )
-        return ast.as_python ()
+        ast = parse(text, grammar)
+        return ast.as_python()
     except FailedParse:
         return None
 
 
-code = generate_code ( GRAMMAR, "3.14 - 1.5" )
-print ( code )
+code = generate_code(GRAMMAR, "3.14 - 1.5")
+print(code)

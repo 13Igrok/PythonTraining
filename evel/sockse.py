@@ -1,7 +1,8 @@
 import contextlib
-import time
-import requests
 import os
+import time
+
+import requests
 
 DEFAULT_DOMAIN = "www.google.com"
 

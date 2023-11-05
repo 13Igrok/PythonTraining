@@ -1,7 +1,7 @@
 import sqlite3
 
-conn = sqlite3.connect ( 'mydatabase.db' )
-c = conn.cursor ()
+conn = sqlite3.connect('mydatabase.db')
+c = conn.cursor()
 
-conn.commit ()
-conn.close ()
+conn.commit()
+conn.close()

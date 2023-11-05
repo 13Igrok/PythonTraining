@@ -1,13 +1,15 @@
-import sys
-import socket
 import ipaddress
-import requests
-from urllib.parse import urlparse
-from tools.EMAIL.emailTools import ReadSenderEmail
+import socket
+import sys
 from time import sleep
+from urllib.parse import urlparse
+
+import requests
 from colorama import Fore
+from tools.EMAIL.emailTools import ReadSenderEmail
 
 """ Check if site is under CloudFlare protection """
+
 
 def __isCloudFlare(link):
     parsed_uri = urlparse(link)
@@ -25,6 +27,7 @@ def __isCloudFlare(link):
     except socket.gaierror:
         return False
 
+
 def __GetAddressInfo(target):
     try:
         ip = target.split(":")[0]
@@ -35,16 +38,19 @@ def __GetAddressInfo(target):
     else:
         return ip, port
 
+
 def __GetURLInfo(target):
     if not target.startswith("http"):
         target = f"http://{target}"
     return target
+
 
 def __GetEmailMessage():
     server, username = ReadSenderEmail()
     subject = input(f"{Fore.BLUE}[?] {Fore.MAGENTA}Enter the Subject (leave blank for random value): ")
     body = input(f"{Fore.BLUE}[?] {Fore.MAGENTA}Enter Your Message (leave blank for random value): ")
     return [server, username, subject, body]
+
 
 def GetTargetAddress(target, method):
     if method == "SMS":
@@ -56,13 +62,13 @@ def GetTargetAddress(target, method):
         email.append(target)
         return email
     elif method in (
-        "SYN",
-        "UDP",
-        "NTP",
-        "POD",
-        "MEMCACHED",
-        "ICMP",
-        "SLOWLORIS",
+            "SYN",
+            "UDP",
+            "NTP",
+            "POD",
+            "MEMCACHED",
+            "ICMP",
+            "SLOWLORIS",
     ) and target.startswith("http"):
         parsed_uri = urlparse(target)
         domain = "{uri.netloc}".format(uri=parsed_uri)
@@ -77,6 +83,7 @@ def GetTargetAddress(target, method):
         return url
     else:
         return target
+
 
 def InternetConnectionCheck():
     try:

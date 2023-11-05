@@ -1,6 +1,6 @@
+import io
 import random
 import sys
-import io
 
 # Open the text file for reading
 with open("name.txt", "r", encoding="utf-8") as file:

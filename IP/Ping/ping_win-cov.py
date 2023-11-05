@@ -1,7 +1,7 @@
 import csv
+import io
 import os
 import sys
-import io
 
 with open('websites.txt', 'r', encoding="ASCII") as file:
     reader = csv.reader(file)
