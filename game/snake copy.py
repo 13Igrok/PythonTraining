@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import time
 
 # Инициализация Pygame
 pygame.init()
@@ -17,7 +18,7 @@ BACKGROUND_COLOR = (255, 255, 255)
 snake = [(0, 0)]
 snake_direction = (1, 0)
 snake_length = 1
-snake_speed = 2
+snake_speed = 10
 
 # Параметры фрукта
 fruit = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
@@ -63,7 +64,8 @@ while True:
 
     # Проверка, съела ли змейка фрукт
     if snake[0] == fruit:
-        snake_length += 1
+        #snake_length += int(snake_length * 0.5)
+        snake_length *= 1.5
         fruit = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
 
     # Удаляем лишний хвост
