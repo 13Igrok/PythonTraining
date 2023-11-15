@@ -2,8 +2,8 @@ import socket
 import threading
 
 target = '10.1.10.1'
-port = 53
-fake_ip = '321.1.1.68'
+port = 0
+fake_ip = '21.51.1.68'
 
 
 def attack():
