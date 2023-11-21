@@ -1,5 +1,6 @@
 import socket
 
+
 def scan_ports(host):
     open_ports = []
     for port in range(1, 1024):
@@ -10,6 +11,7 @@ def scan_ports(host):
             open_ports.append(port)
         sock.close()
     return open_ports
+
 
 host = '127.0.0.1'  # замените на IP-адрес целевого хоста
 open_ports = scan_ports(host)
