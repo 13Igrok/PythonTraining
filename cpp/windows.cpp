@@ -7,10 +7,10 @@ int main() {
     int y = 200;
 
     // Количество кликов
-    int clicks = 500;
+    int clicks = 1000;
 
     // Задержка между кликами в миллисекундах
-    int delay = 0,001;
+    int delay = 1;
 
     // Получаем дескриптор окна
     HWND hwnd = GetDesktopWindow();
