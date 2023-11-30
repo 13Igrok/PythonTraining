@@ -9,6 +9,8 @@ from traits.leftrightwalk import LeftRightWalkTrait
 class RedMushroom(EntityBase):
     def __init__(self, screen, spriteColl, x, y, level, sound):
         super(RedMushroom, self).__init__(y, x - 1, 1.25)
+        self.alive = None
+        self.textPos = None
         self.spriteCollection = spriteColl
         self.animation = Animation(
             [

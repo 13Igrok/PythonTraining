@@ -36,6 +36,7 @@ bigAnimation = Animation(
 class Mario(EntityBase):
     def __init__(self, x, y, level, screen, dashboard, sound, gravity=0.8):
         super(Mario, self).__init__(x, y, gravity)
+        self.rect = None
         self.camera = Camera(self.rect, self)
         self.sound = sound
         self.input = Input(self)
