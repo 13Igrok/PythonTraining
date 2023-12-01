@@ -1,21 +1,17 @@
+import keyboard
+import pyautogui
 import time
-from pynput.mouse import Button, Controller
 
-# Создаем экземпляр контроллера мыши
-mouse = Controller()
+def clicker():
+    while True:
+        if keyboard.is_pressed('right shift'):
+            # Координаты клика
+            x, y = pyautogui.position()
 
-# Координаты клика
-x = 100
-y = 200
+            # Выполнение клика
+            pyautogui.click(x, y)
 
-# Количество кликов
-clicks = 10000
+            # Задержка перед следующим кликом
+            time.sleep(0.001)  # Установите желаемую скорость нажатий
 
-# Задержка между кликами в секундах
-delay = 0.00001
-
-# Перемещаем курсор на указанные координаты и кликаем
-mouse.position = (x, y)
-for i in range(clicks):
-    mouse.click(Button.left)
-    time.sleep(delay)
+clicker()
