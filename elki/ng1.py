@@ -1,19 +1,55 @@
-import time
+import pygame
+import random
 
-def countdown_to_new_year():
-    current_time = time.localtime()
-    remaining_time = time.mktime((current_time.tm_year + 1, 1, 1, 0, 0, 0, 0, 0, 0)) - time.mktime(current_time)
-    days = int(remaining_time // (24 * 3600))
-    remaining_time = remaining_time % (24 * 3600)
-    hours = int(remaining_time // 3600)
-    remaining_time %= 3600
-    minutes = int(remaining_time // 60)
-    remaining_time %= 60
-    seconds = int(remaining_time)
-    print(f'До Нового Года осталось {days} дней, {hours} часов, {minutes} минут и {seconds} секунд')
+# Инициализация Pygame
+pygame.init()
 
-def fireworks_with_message(message):
-    print(f'Салют с надписью: {message}')
+# Установка размеров экрана
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Постоянный салют")
 
-fireworks_with_message('С Новым Годом!')
-countdown_to_new_year()
+# Цвета
+white = (255, 255, 255)
+
+# Основной цикл программы
+running = True
+clock = pygame.time.Clock()
+
+# Функция для создания салюта
+def create_firework():
+    return {
+        'x': random.randint(0, screen_width),
+        'y': screen_height,
+        'color': (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)),
+        'radius': random.randint(5, 20),
+        'speed': random.randint(1, 5)
+    }
+
+fireworks = []
+
+while running:
+    screen.fill(white)
+
+    # Обработка событий
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Создание новых салютов
+    if random.random() < 0.1:
+        fireworks.append(create_firework())
+
+    # Отрисовка и обновление салютов
+    for firework in fireworks:
+        pygame.draw.circle(screen, firework['color'], (firework['x'], firework['y']), firework['radius'])
+        firework['y'] -= firework['speed']
+        if firework['y'] < 0:
+            fireworks.remove(firework)
+
+    pygame.display.flip()
+    clock.tick(60)
+
+# Завершение работы Pygame
+pygame.quit()
