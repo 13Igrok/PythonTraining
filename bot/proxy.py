@@ -1,6 +1,7 @@
 import requests
 from googlesearch import search
 
+
 def get_proxy_urls():
     proxy_urls = []
     for j in search("site:txt best proxies list", num_results=50):
@@ -9,6 +10,7 @@ def get_proxy_urls():
             if "proxy" in line:
                 proxy_urls.append(line)
     return proxy_urls
+
 
 def get_proxy_servers():
     proxy_urls = get_proxy_urls()
@@ -22,6 +24,7 @@ def get_proxy_servers():
             print(f"Error: {e}")
     return proxy_servers
 
+
 def test_proxy(proxy):
     try:
         response = requests.get("http://icanhazip.com", proxies=proxy, timeout=5)
@@ -33,6 +36,7 @@ def test_proxy(proxy):
         print(f"Timeout: {e}")
         return None
 
+
 def check_proxies():
     proxies = get_proxy_servers()
     for proxy in proxies:
@@ -40,5 +44,6 @@ def check_proxies():
         ip = test_proxy(proxy)
         if ip:
             print(f"Working proxy: {proxy}, IP: {ip}")
+
 
 check_proxies()
