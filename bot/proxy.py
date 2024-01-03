@@ -1,6 +1,4 @@
-import requests
-from googlesearch import search
-
+from google import search
 
 def get_proxy_urls():
     proxy_urls = []
