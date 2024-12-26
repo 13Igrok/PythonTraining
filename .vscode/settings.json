@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -10,4 +11,10 @@
     "python.testing.unittestEnabled": true,
     "java.compile.nullAnalysis.mode": "automatic",
     "commentTranslate.hover.enabled": true
+=======
+    "C_Cpp.errorSquiggles": "enabled",
+    "cSpell.words": [
+        "pyautogui"
+    ]
+>>>>>>> 5e362f638fd193041c3caa0c7375165c31b0787f
 }

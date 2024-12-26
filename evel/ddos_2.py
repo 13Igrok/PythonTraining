@@ -13,7 +13,7 @@ def scan_ports(host):
     return open_ports
 
 
-host = '127.0.0.1'  # замените на IP-адрес целевого хоста
+host = '10.1.10.1'  # замените на IP-адрес целевого хоста
 open_ports = scan_ports(host)
 
 if open_ports:

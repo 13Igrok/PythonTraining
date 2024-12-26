@@ -10,6 +10,9 @@ from traits.leftrightwalk import LeftRightWalkTrait
 class Koopa(EntityBase):
     def __init__(self, screen, spriteColl, x, y, level, sound):
         super(Koopa, self).__init__(y - 1, x, 1.25)
+        self.alive = None
+        self.active = None
+        self.bouncing = None
         self.spriteCollection = spriteColl
         self.animation = Animation(
             [
