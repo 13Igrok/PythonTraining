@@ -1,0 +1,69 @@
+{
+    "games_played": 10,
+    "best_score": 0,
+    "average_score": 0.0,
+    "total_score": 0,
+    "learning_progress": [
+        {
+            "timestamp": "2025-04-15T15:12:05.439394",
+            "score": 0,
+            "moves": 120,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:28:16.150715",
+            "score": 0,
+            "moves": 2,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:31:29.071662",
+            "score": 0,
+            "moves": 48,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:35:46.737123",
+            "score": 0,
+            "moves": 187,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:35:54.763972",
+            "score": 0,
+            "moves": 197,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:36:00.570474",
+            "score": 0,
+            "moves": 204,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:37:26.180442",
+            "score": 0,
+            "moves": 27,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:38:14.813438",
+            "score": 0,
+            "moves": 94,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:38:21.697266",
+            "score": 0,
+            "moves": 100,
+            "mistakes": 0
+        },
+        {
+            "timestamp": "2025-04-15T15:39:15.320415",
+            "score": 0,
+            "moves": 150,
+            "mistakes": 0
+        }
+    ],
+    "common_mistakes": {}
+}
