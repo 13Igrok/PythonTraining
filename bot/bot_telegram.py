@@ -1,5 +1,6 @@
 import os
 import logging
+import glob
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from dotenv import load_dotenv
@@ -17,7 +18,35 @@ TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info('Пользователь запустил бота')
-    await update.message.reply_text('Привет! Я бот для работы с картинками. Отправь мне картинку, и я сохраню её.')
+    await update.message.reply_text(
+        'Привет! Я бот для работы с картинками.\n'
+        'Доступные команды:\n'
+        '/start - показать это сообщение\n'
+        '/search - показать все доступные изображения\n'
+        'Просто отправьте мне картинку, и я сохраню её.'
+    )
+
+async def search_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    logger.info('Пользователь запросил поиск изображений')
+    try:
+        # Получаем список всех изображений
+        images = glob.glob("images/*.jpg")
+        
+        if not images:
+            await update.message.reply_text('Нет сохраненных изображений.')
+            return
+            
+        # Отправляем сообщение с количеством найденных изображений
+        await update.message.reply_text(f'Найдено {len(images)} изображений:')
+        
+        # Отправляем каждое изображение
+        for image_path in images:
+            with open(image_path, 'rb') as photo:
+                await update.message.reply_photo(photo=photo)
+                
+    except Exception as e:
+        logger.error(f'Ошибка при поиске изображений: {e}')
+        await update.message.reply_text('Ошибка при поиске изображений')
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info('Пользователь отправил фото')
@@ -48,6 +77,7 @@ def main():
 
     # Добавляем обработчики команд
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("search", search_images))
     application.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
     # Запускаем бота
